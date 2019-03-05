@@ -1,0 +1,14 @@
+{
+	"miniprogramRoot": "miniprogram/",
+	"cloudfunctionRoot": "cloudfunctions/",
+	"setting": {
+		"urlCheck": true,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true
+	},
+	"appid": "wx7a842b0d66526d80",
+	"projectname": "LiulangCat",
+	"libVersion": "2.2.5"
+}
