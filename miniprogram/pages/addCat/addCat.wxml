@@ -1,0 +1,35 @@
+<view class='add-cat-container' style='height: {{containerHeight}}px'>
+  <view class='location-box'>
+    <picker
+    mode="region"
+    bindchange="bindRegionChange"
+    value="{{region}}"
+    custom-item="{{customItem}}"
+  >
+    <view class="picker" wx:if="{{region.length > 0}}">
+      当前选择：{{region[0]}}{{region[1]}}{{region[2]}}
+    </view>
+    <view wx:else>
+      点击选择
+    </view>
+  </picker>
+
+  <input value='{{detailLocation}}' wx:if="{{region.length > 0}}" placeholder='输入详细地址'></input>
+
+  <view class='locateme' bindtap='getLocation'>
+    当前位置
+  </view>
+
+
+    <button bindtap='nextStep' data-step='1'>下一步</button>
+  </view>
+  <view class='photo-box'>
+
+  </view>
+  <view class='contact-box'>
+
+  </view>
+  <view class='desc-box'>
+
+  </view>
+</view>
