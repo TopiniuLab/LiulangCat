@@ -8,6 +8,7 @@ Page({
     detailLocation: '',
 
     containerHeight: 0,
+    uploadedPhoto: []
   },
   onLoad(){
     wx.getSystemInfo({
@@ -109,8 +110,29 @@ Page({
   
   addPhoto(){
     wx.chooseImage({
-      success: function(res) {
+      success: (res) => {
         console.log(res)
+        res.tempFilePaths.map( o => {
+          console.log('上传啦   '  + o)
+          wx.cloud.uploadFile({
+            cloudPath: getApp().globalData.userOpenId + '/' + o.split('/')[3],
+            filePath: o, // 文件路径
+            success: res => {
+              // get resource ID
+              this.setData({
+                uploadedPhoto: this.data.uploadedPhoto.push({
+                  filePath: o,
+                  id: res.fileID
+                })
+              })
+              console.log(res.fileID)
+            },
+            fail: err => {
+              // handle error
+              console.log(err)
+            }
+          })
+        })
       },
     })
   },

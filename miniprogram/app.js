@@ -11,10 +11,23 @@ App({
       })
     }
 
+    //获取用户openid
+    wx.cloud.callFunction({
+      name: 'login',
+      success: (res) => {
+        console.log('app.js ===> ', res.result)
+        this.globalData.userOpenId = res.result.openid;
+      },
+      fail: (err) => {
+        console.log(err)
+      }
+    })
+
   },
   globalData: {
     DB: null,
-    TB: null
+    TB: null,
+    userOpenId:''
   },
   // 初始化数据库
   initWxCloud() {
