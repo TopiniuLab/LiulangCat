@@ -1,0 +1,19 @@
+<view>
+
+  <map
+    id="map"
+    latitude='{{latitude}}'
+    longitude='{{longitude}}' 
+    scale='{{scale}}'
+    show-location
+    style="width: 100%; height: {{containerHeight}}px"
+    markers="{{myMarkers}}">
+
+      <cover-image 
+        class='location-btn' 
+        bindtap='go'
+        src='../../images/icon_location.png'/>
+
+  </map>
+
+</view>
