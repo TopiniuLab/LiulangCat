@@ -1,5 +1,4 @@
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -9,9 +8,6 @@ Page({
     detailLocation: '',
 
     containerHeight: 0,
-  },
-  nextStep(e){
-    console.log(e.target.dataset.step)
   },
   onLoad(){
     wx.getSystemInfo({
@@ -23,10 +19,54 @@ Page({
       },
     })
   },
+  submit(){
+    
+  },
+  chooseLocation(){
+    wx.chooseLocation({
+      success: (res) => {
+        wx.showLoading({
+          title: '解析地址中',
+        })
+        this.completeLocation(res.latitude, res.longitude, (res) => {
+          this.setData({
+            region: [res.address_component.province, res.address_component.city, res.address_component.district],
+            detailLocation: `${res.formatted_addresses.recommend}(${res.address_component.street_number})`
+          })
+        })
+        console.log(res)
+      },
+    })
+  },
   bindRegionChange(e,code,postCode){
     console.log(e)
     this.setData({
       region: e.detail.value
+    })
+  },
+  completeLocation(la,lo,cb){
+    var QQMapWX = require('../../public/js/qqmap-wx-jssdk.min.js')
+
+    var QQMapSDK = new QQMapWX({
+      key: 'WHTBZ-OJTKU-7CDVL-4MS74-HY6T5-JKBXO'
+    })
+    var _this = this;
+    QQMapSDK.reverseGeocoder({
+      location: {
+        latitude: la,
+        longitude: lo
+      },
+      success: (res) => {
+        if (res.status !== 0) {
+          wx.showToast({
+            title: '解析地址异常',
+          })
+          return;
+        }
+        res = res.result;
+        cb(res);
+        wx.hideLoading()
+      }
     })
   },
   getLocation(){
@@ -58,11 +98,19 @@ Page({
             res = res.result;
             this.setData({
               region: [res.address_component.province, res.address_component.city, res.address_component.district],
-              detailLocation: `${res.formatted_addresses.recommend}(${res.address_component.street_number})`
+              detailLocation: `${res.formatted_addresses.recommend}`
             })
             wx.hideLoading()
           }
         })
+      },
+    })
+  },
+  
+  addPhoto(){
+    wx.chooseImage({
+      success: function(res) {
+        console.log(res)
       },
     })
   },
