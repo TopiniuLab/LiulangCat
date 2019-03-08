@@ -107,6 +107,33 @@ Page({
       },
     })
   },
+  delImg(e){
+    console.log('的了img')
+    console.log(e)
+    let id = e.currentTarget.dataset.fileid;
+    wx.cloud.deleteFile({
+      fileList: [id],
+      success: (res) => {
+        let o = this.data.uploadedPhoto;
+        let inde = -1;
+        o.map((i, index) => {
+          if(i.id === id){
+            inde = index;
+          }
+        })
+        o.splice(inde,1)
+        this.setData({
+          uploadedPhoto: o
+        })
+      },
+      fail: (err) => {
+        wx.showToast({
+          title: '删除失败，请重试',
+        })
+        console.log(err)
+      }
+    })
+  },
   
   addPhoto(){
     wx.chooseImage({
@@ -119,11 +146,13 @@ Page({
             filePath: o, // 文件路径
             success: res => {
               // get resource ID
+              let p = this.data.uploadedPhoto;
+              p.push({
+                filePath: o,
+                id: res.fileID
+              })
               this.setData({
-                uploadedPhoto: this.data.uploadedPhoto.push({
-                  filePath: o,
-                  id: res.fileID
-                })
+                uploadedPhoto: p
               })
               console.log(res.fileID)
             },
