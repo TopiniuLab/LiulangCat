@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/index",
     "pages/mapDemo/mapDemo",
     "pages/addCat/addCat",
     "pages/catDetail/catDetail"
@@ -8,9 +9,10 @@
     "backgroundColor": "#F6F6F6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#F6F6F6",
-    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTitleText": "流浪猫",
     "navigationBarTextStyle": "black"
   },
+  "cloud": true,
   "permission":{
     "scope.userLocation":{
       "desc":"需要你的位置信息"
