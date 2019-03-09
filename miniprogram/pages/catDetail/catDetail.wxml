@@ -12,12 +12,15 @@
         </block>
       </swiper>
       <view class='name-box'>
-       <view style='margin-bottom: -10px;'>
-       {{time}}
-       </view>
-       <view>
-       {{date}}
-       </view>
+        <view style='margin-bottom: -10px;'>
+          {{time}}
+        </view>
+        <view>
+          {{date}}
+        </view>
+      </view>
+      <view class='locate-box' hover-class='locate-box-hover' bindtap='openLocation'>
+        <image style='width: 40rpx;height: 40rpx;' src='../../public/imgs/catDetail/locate.png'></image>
       </view>
     </view>
     <view class='detail-container'>
