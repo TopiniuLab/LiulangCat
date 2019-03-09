@@ -1,0 +1,4 @@
+<view style='height:{{containerHeight}}px'>
+<image mode='aspectFill' class='bg-img' style='height:{{containerHeight}}px;filter: blur(20px)' src='{{catDetail.photos[0]}}'>
+</image>
+</view>

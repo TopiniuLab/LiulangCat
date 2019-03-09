@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -39,7 +39,15 @@
 				{
 					"id": -1,
 					"name": "addCat",
-					"pathName": "pages/addCat/addCat"
+					"pathName": "pages/addCat/addCat",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "catDetail",
+					"pathName": "pages/catDetail/catDetail",
+					"query": "id=XIO8UcDR1TiNzN-D",
+					"scene": null
 				}
 			]
 		}

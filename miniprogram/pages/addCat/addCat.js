@@ -79,6 +79,7 @@ Page({
     p.uploadedPhoto.map(i => {
       o.push(i.id)
     })
+    let d = new Date();
     return {
       address: p.region[0] + p.region[1] + p.region[2] + p.detailLocation,
       contactType: p.contactType,
@@ -86,7 +87,8 @@ Page({
       description: p.description,
       isStray: p.isStray,
       ...p.locationInfo,
-      photos: o
+      photos: o,
+      createTime: d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + '/' + d.getHours() + '/' + d.getMinutes()
     }
   },
   bindDescInput(e){
@@ -241,9 +243,9 @@ Page({
       success: (res) => {
         console.log(res)
         res.tempFilePaths.map( o => {
-          console.log('上传啦   '  + o)
+          console.log('上传啦   ' + o + '   ' + getApp().globalData.userOpenId)
           wx.cloud.uploadFile({
-            cloudPath: getApp().globalData.userOpenId + '/' + o.split('/')[3],
+            cloudPath: getApp().globalData.userOpenId + o.split('//')[1],
             filePath: o, // 文件路径
             success: res => {
               // get resource ID

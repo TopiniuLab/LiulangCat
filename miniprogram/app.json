@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/mapDemo/mapDemo",
-    "pages/addCat/addCat"
+    "pages/addCat/addCat",
+    "pages/catDetail/catDetail"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
