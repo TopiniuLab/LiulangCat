@@ -58,6 +58,6 @@
         <view class='desc-text'>{{catDetail.createTime}}</view>
       </view>
     </view>
-  <view class='back-btn' hover-class='back-btn-hover'>返回上一页</view>
+  <view class='back-btn' bindtap='goBack' hover-class='back-btn-hover'>返回上一页</view>
   </view>
 </view>
