@@ -3,20 +3,20 @@
   </image>
 
   <view class='info-container'>
-    <view class='img-container'>
-      <swiper style='width: 100%' indicator-dots='{{true}}' autoplay interval='5000'>
+    <view class='img-container' style='position: relative'>
+      <swiper style='width: 100%; height: 338px;' indicator-dots='{{true}}' autoplay interval='5000'>
         <block wx:key="id" wx:for='{{catDetail.photos}}'>
           <swiper-item>
-            <image style='width: 100%; border-radius: 6px 6px 0 0;' mode='aspectFill' src='{{item}}'></image>
+            <image style='width: 100%;height: 338px; border-radius: 6px 6px 0 0;' mode='aspectFill' src='{{item}}'></image>
           </swiper-item>
         </block>
       </swiper>
-    </view>
-    <view class='detail-container'>
-      <view class='name'>
+      <view class='name-box'>
         猫咪
         <view class='name-text text'>{{catDetail.createTime}}</view> 号
       </view>
+    </view>
+    <view class='detail-container'>
       <view class='desc short'>
         <view class='title'>
           详细信息：

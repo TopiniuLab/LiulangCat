@@ -6,7 +6,7 @@
   z-index: -999;
 }
 .info-container{
-  width: 90%;
+  width: 338px;
   border-radius: 6px;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
   margin: 0 auto;
@@ -18,15 +18,14 @@
   padding: 0 10px 10px 10px;
   
 }
-.name{
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-.name-text{
+.name-box{
   font-size: 24px;
-  color:black;
-  font-weight: bold;
+  font-weight: bolder;
+  margin-bottom: 10px;
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  color: white;
 }
 .text{
   display: inline;
@@ -54,7 +53,6 @@
   width: 80%;
   font-size: 10px;
   color: #999;
-  text-align: left
 }
 .show-map{
   transform: scale(1.1)
