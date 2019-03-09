@@ -6,6 +6,8 @@ Page({
   data: {
     catDetail: null,
     containerHeight: 0,
+    time: '',
+    date: ''
   },
   openLocation(){
     wx.openLocation({
@@ -30,8 +32,11 @@ Page({
     getApp().globalData.TB.doc(options.id).get({
       success: (res) => {
         console.log(res.data)
+        console.log(res.data.createTime.split(' '))
         this.setData({
-          catDetail: res.data
+          catDetail: res.data,
+          time: res.data.createTime.split(' ')[1],
+          date: res.data.createTime.split(' ')[0]
         })
       },
       error: (err) => {

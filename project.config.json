@@ -43,10 +43,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "catDetail",
 					"pathName": "pages/catDetail/catDetail",
-					"query": "id=XIO8UcDR1TiNzN-D",
+					"query": "id=XIPkDHffS3SW-eTD",
 					"scene": null
 				}
 			]

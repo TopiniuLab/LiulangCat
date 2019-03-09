@@ -50,7 +50,7 @@
       </view>
       <view class='contact-type'>
       <view class='contact-content'>
-        <input class='contact-input' bindinput='bindContactInput' placeholder='请输入您的{{contactInfo.type.name}}便于我们联系您'></input>
+        <input class='contact-input' bindinput='bindContactInput' placeholder='请输入您的{{contactType.name}}便于我们联系您'></input>
       </view>
         <view class='types-container'>
         <view  bindtap='switchContactType' hover-class='type-hover' data-id='{{item.id}}' data-name='{{item.name}}' class=' contact-type-item {{contactType.id === item.id?"selected-type":""}}' wx:key="{{id}}" wx:for='{{contactTypes}}'>

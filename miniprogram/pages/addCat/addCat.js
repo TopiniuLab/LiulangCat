@@ -9,24 +9,22 @@ Page({
 
     containerHeight: 0,
     uploadedPhoto: [],
-    contactTypes: [
-      {
-        id: 1,
-        name: 'QQ'
-      },{
-        id: 2,
-        name: '微博',
-      },{
-        id: 3,
-        name: '微信'
-      },{
-        id: 4,
-        name: '手机号'
-      }
-    ],
-    contactType:{
-        id:1,
-        name:'QQ'
+    contactTypes: [{
+      id: 1,
+      name: 'QQ'
+    }, {
+      id: 2,
+      name: '微博',
+    }, {
+      id: 3,
+      name: '微信'
+    }, {
+      id: 4,
+      name: '手机号'
+    }],
+    contactType: {
+      id: 1,
+      name: 'QQ'
     },
     contactValue: '',
     isStray: false,
@@ -36,13 +34,13 @@ Page({
     },
     description: ''
   },
-  switchStray(e){
+  switchStray(e) {
     console.log(e)
     this.setData({
       isStray: e.detail.value
     })
   },
-  switchContactType(e){
+  switchContactType(e) {
     let o = this.data.contactType;
     o = {
       id: parseInt(e.currentTarget.dataset.id),
@@ -52,7 +50,7 @@ Page({
       contactType: o
     })
   },
-  onLoad(){
+  onLoad() {
     wx.getSystemInfo({
       success: (res) => {
         this.setData({
@@ -62,7 +60,7 @@ Page({
       },
     })
   },
-  compuData(){
+  compuData() {
     /**
         "address": 南县
         "contactType": 电话
@@ -88,17 +86,47 @@ Page({
       isStray: p.isStray,
       ...p.locationInfo,
       photos: o,
-      createTime: d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + '/' + d.getHours() + ':' + d.getMinutes()
+      createTime: this.curentTime()
     }
   },
-  bindDescInput(e){
+  curentTime() {
+    var now = new Date();
+
+    var year = now.getFullYear(); //年
+    var month = now.getMonth() + 1; //月
+    var day = now.getDate(); //日
+
+    var hh = now.getHours(); //时
+    var mm = now.getMinutes(); //分
+
+    var clock = year + "-";
+
+    if (month < 10)
+      clock += "0";
+
+    clock += month + "-";
+
+    if (day < 10)
+      clock += "0";
+
+    clock += day + " ";
+
+    if (hh < 10)
+      clock += "0";
+
+    clock += hh + ":";
+    if (mm < 10) clock += '0';
+    clock += mm;
+    return (clock);
+  },
+  bindDescInput(e) {
     console.log(e)
     this.data.description = e.detail.value;
   },
   bindContactInput(e) {
     this.data.contactValue = e.detail.value;
   },
-  submit(){
+  submit() {
     console.log(this.data)
     console.log(this.compuData())
     getApp().globalData.TB.add({
@@ -117,8 +145,8 @@ Page({
         })
       }
     })
-  }, 
-  chooseLocation(){
+  },
+  chooseLocation() {
     wx.chooseLocation({
       success: (res) => {
         wx.showLoading({
@@ -138,13 +166,13 @@ Page({
       },
     })
   },
-  bindRegionChange(e,code,postCode){
+  bindRegionChange(e, code, postCode) {
     console.log(e)
     this.setData({
       region: e.detail.value
     })
   },
-  completeLocation(la,lo,cb){
+  completeLocation(la, lo, cb) {
     var QQMapWX = require('../../public/js/qqmap-wx-jssdk.min.js')
 
     var QQMapSDK = new QQMapWX({
@@ -169,7 +197,7 @@ Page({
       }
     })
   },
-  getLocation(){
+  getLocation() {
     wx.showLoading({
       title: '获取位置中',
     })
@@ -192,8 +220,8 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude
           },
-          success:(res)=>{
-            if(res.status !== 0){
+          success: (res) => {
+            if (res.status !== 0) {
               wx.showToast({
                 title: '解析地址异常',
               })
@@ -210,7 +238,7 @@ Page({
       },
     })
   },
-  delImg(e){
+  delImg(e) {
     console.log('的了img')
     console.log(e)
     let id = e.currentTarget.dataset.fileid;
@@ -220,11 +248,11 @@ Page({
         let o = this.data.uploadedPhoto;
         let inde = -1;
         o.map((i, index) => {
-          if(i.id === id){
+          if (i.id === id) {
             inde = index;
           }
         })
-        o.splice(inde,1)
+        o.splice(inde, 1)
         this.setData({
           uploadedPhoto: o
         })
@@ -237,15 +265,15 @@ Page({
       }
     })
   },
-  
-  addPhoto(){
+
+  addPhoto() {
     wx.chooseImage({
       success: (res) => {
         console.log(res)
-        res.tempFilePaths.map( o => {
+        res.tempFilePaths.map(o => {
           console.log('上传啦   ' + o + '   ' + getApp().globalData.userOpenId)
           wx.cloud.uploadFile({
-            cloudPath: getApp().globalData.userOpenId + o.split('//')[1],
+            cloudPath: getApp().globalData.userOpenId + '/' +  o.split('//')[1],
             filePath: o, // 文件路径
             success: res => {
               // get resource ID
@@ -272,49 +300,49 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-    
+  onShow: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function () {
-    
+  onHide: function() {
+
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-    
+  onUnload: function() {
+
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
-    
+  onPullDownRefresh: function() {
+
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-    
+  onReachBottom: function() {
+
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
-    
+  onShareAppMessage: function() {
+
   }
 })

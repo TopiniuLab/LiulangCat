@@ -1,19 +1,23 @@
-<view style='height:{{containerHeight}}px;width: 100%'>
-  <image mode='aspectFill' class='bg-img' style='height:{{containerHeight}}px;filter: blur(20px)' src='{{catDetail.photos[0]}}'>
+<view style='height:{{containerHeight*2}}rpx;width: 100%;float: left'>
+  <image mode='aspectFill' class='bg-img' style='height:{{containerHeight*2}}rpx;filter: blur(20rpx)' src='{{catDetail.photos[0]}}'>
   </image>
 
   <view class='info-container'>
     <view class='img-container' style='position: relative'>
-      <swiper style='width: 100%; height: 338px;' indicator-dots='{{true}}' autoplay interval='5000'>
+      <swiper style='width: 100%; height: 676rpx;' indicator-dots='{{false}}' autoplay interval='7000'>
         <block wx:key="id" wx:for='{{catDetail.photos}}'>
           <swiper-item>
-            <image style='width: 100%;height: 338px; border-radius: 6px 6px 0 0;' mode='aspectFill' src='{{item}}'></image>
+            <image style='width: 100%;height: 676rpx; border-radius: 12rpx 12rpx 0 0;' mode='aspectFill' src='{{item}}'></image>
           </swiper-item>
         </block>
       </swiper>
       <view class='name-box'>
-        猫咪
-        <view class='name-text text'>{{catDetail.createTime}}</view> 号
+       <view style='margin-bottom: -10px;'>
+       {{time}}
+       </view>
+       <view>
+       {{date}}
+       </view>
       </view>
     </view>
     <view class='detail-container'>
@@ -31,6 +35,24 @@
           </view>
         </view>
         <view class='desc-text'>{{catDetail.address}}</view>
+      </view>
+      <view class='desc short' hover-class='show-map'>
+        <view class='title'>
+          流浪猫吗：
+        </view>
+        <view class='desc-text'>{{catDetail.isStary?'是':'不是'}}</view>
+      </view>
+      <view class='desc short' hover-class='show-map'>
+        <view class='title'>
+          {{catDetail.contactType.name}}：
+        </view>
+        <view class='desc-text'>{{catDetail.contactValue}}</view>
+      </view>
+      <view class='desc short' hover-class='show-map'>
+        <view class='title'>
+          创建时间：
+        </view>
+        <view class='desc-text'>{{catDetail.createTime}}</view>
       </view>
     </view>
   </view>
