@@ -5,23 +5,18 @@
         所处位置
       </view>
       <view class='form-item-container'>
-
         <view class='location-box'>
           <view>
             {{region[0]}} - {{region[1]}} - {{region[2]}}
           </view>
           <view>
-            <textarea auto-focus style='width: 90%' rows='2' auto-height class='location-input' value='{{detailLocation}}' wx:if="{{region.length > 0}}" placeholder='输入详细地址'></textarea>
+            <textarea auto-focus style='width: 100%' rows='2' auto-height class='location-input' value='{{detailLocation}}' wx:if="{{region.length > 0}}" placeholder='输入详细地址'></textarea>
           </view>
         </view>
         <view class='choose'>
-            <view class="picker" hover-class='location-btn-hover'  bindtap='chooseLocation'>
-                选择所处位置
-            </view>
+            <view class="picker" hover-class='location-btn-hover'  bindtap='chooseLocation'>选择所处位置</view>
           <view style='color: #333;font-size:14px;margin-left: 6px;margin-right:6px;'>或者</view>
-          <view class='locateme' hover-class='location-btn-hover' bindtap='getLocation'>
-            使用当前位置
-          </view>
+          <view class='locateme' hover-class='location-btn-hover' bindtap='getLocation'>使用当前位置</view>
         </view>
 
       </view>
@@ -53,9 +48,7 @@
         <input class='contact-input' bindinput='bindContactInput' placeholder='请输入您的{{contactType.name}}便于我们联系您'></input>
       </view>
         <view class='types-container'>
-        <view  bindtap='switchContactType' hover-class='type-hover' data-id='{{item.id}}' data-name='{{item.name}}' class=' contact-type-item {{contactType.id === item.id?"selected-type":""}}' wx:key="{{id}}" wx:for='{{contactTypes}}'>
-          {{item.name}}
-        </view>
+        <view  bindtap='switchContactType' hover-class='type-hover' data-id='{{item.id}}' data-name='{{item.name}}' class=' contact-type-item {{contactType.id === item.id?"selected-type":""}}' wx:key="{{id}}" wx:for='{{contactTypes}}'>{{item.name}}</view>
         </view>
       </view>
     </view>

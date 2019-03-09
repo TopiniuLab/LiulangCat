@@ -11,13 +11,21 @@
   box-shadow: 0 2rpx 16rpx rgba(0,0,0,0.2);
   margin: 0 auto;
   background-color: white;
-  margin-top: 40rpx;
+  position: absolute;
+  top: 1000rpx;
+  left: 50%;
+  transform: translate(-50%,0);
+  opacity: 0;
+  margin-bottom: 40rpx;
+}
+.info-show{
+  animation: showCard .5s alternate;
+  animation-fill-mode: forwards;
 }
 .detail-container{
-  margin-top: 20rpx;
   padding: 0 20rpx 20rpx 20rpx;
-  
-}
+  margin-top: 20rpx;
+}  
 .name-box{
   font-size: 64rpx;
   font-weight: bolder;
@@ -83,6 +91,27 @@
 .show-map{
   transform: scale(1.1)
 }
+.back-btn{
+  width: 90%;
+  background: linear-gradient(-135deg,#23BCBB 0%, #45E994 100%);
+  animation: back 5s ease-in-out 1s infinite alternate; 
+  background-size: 200% 200%;
+  background-position: 0 100%;
+  transition: transform .3s;
+  border-radius: 6px;
+  color: white;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  height: 60rpx;
+  margin-bottom: 20rpx;
+}
+.back-btn-hover{
+  animation-duration: 1s;
+  transform: scale(0.9)
+}
 @keyframes back{
   0% {
 		background-position: 0% 100%
@@ -93,4 +122,14 @@
 	100% {
 		background-position: 0% 100%
 	}
+}
+@keyframes showCard{
+  from{
+    top: 1000rpx;
+    opacity: 0
+  }
+  to{
+    top: 40rpx;
+    opacity: 1
+  }
 }

@@ -7,7 +7,8 @@ Page({
     catDetail: null,
     containerHeight: 0,
     time: '',
-    date: ''
+    date: '',
+    showCard: false
   },
   openLocation(){
     wx.openLocation({
@@ -58,7 +59,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    setTimeout(()=>{
+      this.setData({
+        showCard: true
+      })
+    },500)
   },
 
   /**
