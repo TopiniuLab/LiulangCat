@@ -7,12 +7,19 @@
     scale='{{scale}}'
     show-location
     style="width: 100%; height: {{containerHeight}}px"
-    markers="{{myMarkers}}">
+    markers="{{myMarkers}}"
+    bindmarkertap='onMarkerClick'>
 
       <cover-image 
         class='location-btn' 
         bindtap='go'
-        src='../../images/icon_location.png'/>
+        src='../../images/icon_location.png'
+        />
+
+      <cover-view hidden='{{isHideDetailWrap}}' class='detail-wrap'>
+        <cover-view>地址 : {{detail.address}}</cover-view>
+        <cover-view>创建时间 : {{detail.createTime}}</cover-view>
+      </cover-view>
 
   </map>
 

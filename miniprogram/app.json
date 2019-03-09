@@ -9,6 +9,7 @@
     "navigationBarTitleText": "流浪猫",
     "navigationBarTextStyle": "black"
   },
+  "cloud": true,
   "permission":{
     "scope.userLocation":{
       "desc":"需要你的位置信息"

@@ -1,28 +1,63 @@
+var QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js');
+var qqmapsdk;
 
 Page({
   data: {
     containerHeight:0,
     scale: 14,
-    latitude: 28.11266,
-    longitude: 112.9834,
+    latitude: 0,
+    longitude: 0,
     myMarkers: [{
       id: 1,
       latitude: 28.11266,
       longitude: 112.9834,
       iconPath: '../../images/icon_1.png',
-      label: {
-        content: "test 1 ...",
-        bgColor: "#ffffff",
-        fontSize: 20
-      },
       width: 30,
       height: 30
     }],
+
+    detail:{
+      address:"",
+      createTime:""
+    },
+    isHideDetailWrap:true
   },
 
+  /**
+   * 定位
+   */
   go() {
     console.log('kkk')
-    this.mapCtx.moveToLocation();
+    this.mapCtx.moveToLocation()
+    console.log("latitude:" + this.data.latitude + " " + "longitude:" + this.data.longitude)
+  },
+
+  onMarkerClick(res){
+    this.setData({
+      isHideDetailWrap: false
+    })
+    var that = this;
+    qqmapsdk.reverseGeocoder({
+      location: {
+        latitude: that.data.latitude,
+        longitude: that.data.longitude,
+      },
+      success: (res) => {//成功后的回调
+        var res = res.result;
+        that.setData({
+          detail: {
+            address: res.address,
+            createTime:"2019/3/8"
+          }
+        })
+      }
+    })
+  },
+
+  hideDetailWrap(){
+    this.setData({
+      isHidden: true
+    })
   },
 
   /**
@@ -30,6 +65,28 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    qqmapsdk = new QQMapWX({
+      key: 'WZZBZ-2BZ3G-4CNQ5-IGDUI-SIKP3-UOFAR'
+    })
+
+    wx.cloud.init({
+      env:"dev-c86710"
+    })
+
+    const db = wx.cloud.database()
+
+    db.collection('catlist').get({
+      success:(res)=>{
+        console.log("获取数据:")
+        console.log(res)
+      },
+      fail:(res)=>{
+        console.log("失败")
+      }
+    })
+
+    this.mapCtx = wx.createMapContext('map', this);
+
     wx.getLocation({
       success: function (res) {
         console.log("latitude:" + res.latitude + " " + "longitude:" + res.longitude)
@@ -41,11 +98,6 @@ Page({
             latitude: res.latitude,
             longitude: res.longitude,
             iconPath: '../../images/icon_1.png',
-            label: {
-              content: "test 2 ...",
-              bgColor: "#ffffff",
-              fontSize: 20
-            },
             width: 50,
             height: 50
           }],
@@ -53,8 +105,7 @@ Page({
       },
     })
 
-    this.mapCtx = wx.createMapContext('map', this);
-
+    //获取屏幕高度
     wx.getSystemInfo({
       success: (res)=> {
         this.setData({
@@ -76,7 +127,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+  
   },
 
   /**
