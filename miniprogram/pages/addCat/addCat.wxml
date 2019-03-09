@@ -1,0 +1,57 @@
+<view class='add-cat-container container' style='height: {{containerHeight}}px'>
+  <view class='content-container'>
+    <view class='location-content-box content-box'>
+      <view class='desc-text'>
+        所处位置
+      </view>
+      <view class='form-item-container'>
+
+        <view class='location-box'>
+          <view>
+            {{region[0]}} - {{region[1]}} - {{region[2]}}
+          </view>
+          <view>
+            <textarea auto-focus style='width: 90%' rows='2' auto-height class='location-input' value='{{detailLocation}}' wx:if="{{region.length > 0}}" placeholder='输入详细地址'></textarea>
+          </view>
+        </view>
+        <view class='choose'>
+            <view class="picker" hover-class='location-btn-hover'  bindtap='chooseLocation'>
+                选择所处位置
+            </view>
+          <view style='color: #333;font-size:14px;margin-left: 6px;margin-right:6px;'>或者</view>
+          <view class='locateme' hover-class='location-btn-hover' bindtap='getLocation'>
+            使用当前位置
+          </view>
+        </view>
+
+      </view>
+    </view>
+
+    <view class='photo-box content-box'>
+      <view class='desc-text'>
+        现场照片
+      </view>
+      <view class='img-container'>
+        <view wx:for="{{uploadedPhoto}}" wx:key="{{id}}">
+        <view style='position: relative; margin-right: 15px'>
+          <image class='img' mode='aspectFill' src='{{item.id}}'>
+          </image>
+          <view bindtap='delImg' data-fileid='{{item.id}}' hover-class='delimg-hover' class='delimg'>
+            <image  style='width: 100%;height:100%' src='../../public/imgs/addCat/cancel-button.png'></image>
+          </view>
+        </view>
+        </view>
+        <view bindtap='addPhoto' hover-class='add-photo-btn-hover' class='add-photo-btn'>+</view>
+      </view>
+    </view>
+    <view class='contact-box'>
+
+    </view>
+    <view class='desc-box'>
+
+    </view>
+
+
+    <button  class='next-btn' style='background-color: rgb(66,167,227)' bindtap='submit' data-step='1'>确定</button>
+  </view>
+</view>

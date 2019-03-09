@@ -11,5 +11,37 @@
 	"appid": "wx7a842b0d66526d80",
 	"projectname": "LiulangCat",
 	"libVersion": "2.2.5",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "addCat",
+					"pathName": "pages/addCat/addCat"
+				}
+			]
+		}
+	}
 }
