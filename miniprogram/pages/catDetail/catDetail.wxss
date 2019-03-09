@@ -19,11 +19,43 @@
   
 }
 .name{
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 .name-text{
-  display: inline;
-  font-size: 18px;
+  font-size: 24px;
   color:black;
   font-weight: bold;
+}
+.text{
+  display: inline;
+}
+.short{
+  width: 95%;
+  margin: 0 auto;
+}
+.desc{
+  font-size: 14px;
+  display: flex;
+  margin-bottom: 6px;
+  transition: all .3s;
+}
+.desc-text{
+  font-size: 16px;
+  width: 70%;
+  padding-left: 2px;
+}
+.title{
+  width: 25%;
+  text-align: right;
+}
+.q{
+  width: 80%;
+  font-size: 10px;
+  color: #999;
+  text-align: left
+}
+.show-map{
+  transform: scale(1.1)
 }

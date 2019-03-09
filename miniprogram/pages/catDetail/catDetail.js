@@ -7,6 +7,13 @@ Page({
     catDetail: null,
     containerHeight: 0,
   },
+  openLocation(){
+    wx.openLocation({
+      latitude: this.data.catDetail.latitude,
+      longitude: this.data.catDetail.longitude,
+      scale: 18
+    })
+  },
 
   /**
    * 生命周期函数--监听页面加载
