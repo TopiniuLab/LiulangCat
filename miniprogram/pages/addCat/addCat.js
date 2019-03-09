@@ -88,7 +88,7 @@ Page({
       isStray: p.isStray,
       ...p.locationInfo,
       photos: o,
-      createTime: d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + '/' + d.getHours() + '/' + d.getMinutes()
+      createTime: d.getFullYear() + '/' + d.getMonth() + '/' + d.getDate() + '/' + d.getHours() + ':' + d.getMinutes()
     }
   },
   bindDescInput(e){

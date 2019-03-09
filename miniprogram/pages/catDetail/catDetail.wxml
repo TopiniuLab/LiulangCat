@@ -1,4 +1,21 @@
-<view style='height:{{containerHeight}}px'>
+<view style='height:{{containerHeight}}px;width: 100%'>
 <image mode='aspectFill' class='bg-img' style='height:{{containerHeight}}px;filter: blur(20px)' src='{{catDetail.photos[0]}}'>
 </image>
+
+<view class='info-container'>
+  <view class='img-container'>
+    <swiper style='width: 100%' indicator-dots='{{true}}' autoplay interval='5000'>
+      <block wx:key="id" wx:for='{{catDetail.photos}}'>
+        <swiper-item>
+          <image style='width: 100%; border-radius: 6px 6px 0 0;' mode='aspectFill' src='{{item}}'></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class='detail-container'>
+  <view class='name'>
+    猫咪 <view class='name-text'>{{catDetail.createTime}}</view> 号
+  </view>
+  </view>
+</view>
 </view>
