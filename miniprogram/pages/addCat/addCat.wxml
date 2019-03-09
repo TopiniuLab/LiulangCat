@@ -44,14 +44,43 @@
         <view bindtap='addPhoto' hover-class='add-photo-btn-hover' class='add-photo-btn'>+</view>
       </view>
     </view>
-    <view class='contact-box'>
-
+    <view class='contact-box content-box'>
+      <view class='desc-text'>
+        联系方式
+      </view>
+      <view class='contact-type'>
+      <view class='contact-content'>
+        <input class='contact-input' bindinput='bindContactInput' placeholder='请输入您的{{contactInfo.type.name}}便于我们联系您'></input>
+      </view>
+        <view class='types-container'>
+        <view  bindtap='switchContactType' hover-class='type-hover' data-id='{{item.id}}' data-name='{{item.name}}' class=' contact-type-item {{contactType.id === item.id?"selected-type":""}}' wx:key="{{id}}" wx:for='{{contactTypes}}'>
+          {{item.name}}
+        </view>
+        </view>
+      </view>
     </view>
-    <view class='desc-box'>
-
+    <view class='desc-box content-box'>
+      <view class='desc-text'>
+        详细描述
+      </view>
+      <view class='textarea-box'>
+        <textarea row='5' bindinput='bindDescInput' style='width: 90%;margin: 0 auto;font-size:16px' auto-height  placeholder="输入详细信息便于我们更了解它的情况">
+        
+        </textarea>
+      </view>
+      <view>
+      </view>
+    </view>
+    <view class='status-box content-box'>
+      <view class='desc-text'>
+        其他状态
+      </view>
+      <view class='status'>
+        流浪猫：<switch bindchange='{{switchStray}}'/>
+      </view>
     </view>
 
 
-    <button  class='next-btn' style='background-color: rgb(66,167,227)' bindtap='submit' data-step='1'>确定</button>
+    <button hover-class='submit-hover' class='next-btn' style='background-color: rgb(66,167,227)' bindtap='submit' data-step='1'>确定</button>
   </view>
 </view>

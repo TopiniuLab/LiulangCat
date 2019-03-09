@@ -16,7 +16,7 @@ App({
       name: 'login',
       success: (res) => {
         console.log('app.js ===> ', res.result)
-        this.globalData.userOpenId = res.result.openid;
+        this.globalData.userOpenId = res.result.OPENID;
       },
       fail: (err) => {
         console.log(err)

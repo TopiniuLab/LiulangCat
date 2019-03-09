@@ -30,6 +30,7 @@ padding-top: 20px;
   animation: back 10s ease-in-out 1s infinite alternate; 
   background-size: 200% 200%;
   background-position: 0 50%;
+  margin-bottom: 20px;
 }
 .desc-text{
   font-size: 20px;
@@ -117,6 +118,47 @@ padding-top: 20px;
 }
 .delimg-hover{
   transform: scale(1.1)
+}
+.types-container{
+  display: flex;
+  justify-content: flex-start;
+}
+.contact-type{
+  width: 90%;
+  margin: 0 auto;
+}
+.contact-type-item{
+  border: 1px solid #888;
+  color: #888;
+  padding: 3px 6px;
+  border-radius: 6px;
+  transition: all .3s;
+  margin-right: 10px;
+  font-size: 16px;
+}
+.selected-type{
+  background-color: #6078EA;
+  border-color: #6078EA;
+  color: white;
+}
+.contact-input{
+  font-size: 16px;
+  border-bottom: 1px solid #888;
+  margin-bottom: 10px;
+}
+.type-hover{
+  transform: scale(1.1)
+}
+.status{
+  font-size: 16px;
+  width: 90%;
+  margin: 0 auto;
+}
+.wx-switch-input{width:41px !important;height:20px !important;}
+.wx-switch-input::before{width:40px !important;height: 20px !important;}
+.wx-switch-input::after{width: 18px !important;height: 18px !important;}
+.submit-hover{
+  animation-duration: 1s;
 }
 @keyframes back{
   0% {

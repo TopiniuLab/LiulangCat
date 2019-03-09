@@ -8,7 +8,49 @@ Page({
     detailLocation: '',
 
     containerHeight: 0,
-    uploadedPhoto: []
+    uploadedPhoto: [],
+    contactTypes: [
+      {
+        id: 1,
+        name: 'QQ'
+      },{
+        id: 2,
+        name: '微博',
+      },{
+        id: 3,
+        name: '微信'
+      },{
+        id: 4,
+        name: '手机号'
+      }
+    ],
+    contactType:{
+        id:1,
+        name:'QQ'
+    },
+    contactValue: '',
+    isStray: false,
+    locationInfo: {
+      latitude: '',
+      longitude: ''
+    },
+    description: ''
+  },
+  switchStray(e){
+    console.log(e)
+    this.setData({
+      isStray: e.detail.value
+    })
+  },
+  switchContactType(e){
+    let o = this.data.contactType;
+    o = {
+      id: parseInt(e.currentTarget.dataset.id),
+      name: e.currentTarget.dataset.name,
+    }
+    this.setData({
+      contactType: o
+    })
   },
   onLoad(){
     wx.getSystemInfo({
@@ -20,15 +62,70 @@ Page({
       },
     })
   },
-  submit(){
-    
+  compuData(){
+    /**
+        "address": 南县
+        "contactType": 电话
+        "contactValue": 17680507554
+        "createTime": 2019/3/9
+        "description": 纤细信息。。。
+        "isStray": true
+        "latitude": 28.11266
+        "longitude": 112.9834
+        "photos":["图片1"]
+     */
+    const p = this.data;
+    let o = [];
+    p.uploadedPhoto.map(i => {
+      o.push(i.id)
+    })
+    return {
+      address: p.region[0] + p.region[1] + p.region[2] + p.detailLocation,
+      contactType: p.contactType,
+      contactValue: p.contactValue,
+      description: p.description,
+      isStray: p.isStray,
+      ...p.locationInfo,
+      photos: o
+    }
   },
+  bindDescInput(e){
+    console.log(e)
+    this.data.description = e.detail.value;
+  },
+  bindContactInput(e) {
+    this.data.contactValue = e.detail.value;
+  },
+  submit(){
+    console.log(this.data)
+    console.log(this.compuData())
+    getApp().globalData.TB.add({
+      data: this.compuData(),
+      success: (res) => {
+        wx.showToast({
+          title: '添加成功',
+          icon: 'none'
+        })
+      },
+      fail: (err) => {
+        console.log(err)
+        wx.showToast({
+          title: '',
+          icon: 'none'
+        })
+      }
+    })
+  }, 
   chooseLocation(){
     wx.chooseLocation({
       success: (res) => {
         wx.showLoading({
           title: '解析地址中',
         })
+        this.data.locationInfo = {
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
         this.completeLocation(res.latitude, res.longitude, (res) => {
           this.setData({
             region: [res.address_component.province, res.address_component.city, res.address_component.district],
@@ -82,6 +179,10 @@ Page({
         var QQMapSDK = new QQMapWX({
           key: 'WHTBZ-OJTKU-7CDVL-4MS74-HY6T5-JKBXO'
         })
+        this.data.locationInfo = {
+          latitude: res.latitude,
+          longitude: res.longitude
+        }
 
         var _this = this;
         QQMapSDK.reverseGeocoder({
