@@ -15,12 +15,16 @@
         bindtap='go'
         src='../../public/imgs/icon_location.png'
         />
-
-      <cover-view hidden='{{isHideDetailWrap}}' class='detail-wrap'>
-        <cover-view>地址 : {{detail.address}}</cover-view>
-        <cover-view>创建时间 : {{detail.createTime}}</cover-view>
-      </cover-view>
-
   </map>
+  <view wx:if='{{!isHideDetailWrap}}' class='detail-wrap'>
+    <swiper class='card-swiper'>
+        <block wx:for='{{detail.photos}}' wx:key='id'>
+          <swiper-item>
+            <image style='width: 100%;' src='{{item}}'></image>
+          </swiper-item>
+        </block>
+        </swiper>
+        {{detail.address}}
+  </view>
 
 </view>
