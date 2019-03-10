@@ -10,11 +10,10 @@ Page({
     longitude: 0,
     myMarkers: [{}],
 
-    detail:{
-      address:"",
-      createTime:""
-    },
-    isHideDetailWrap:true
+    detail:null,
+    isHideDetailWrap:true,
+
+    flagCatList: [],
   },
 
   /**
@@ -34,35 +33,9 @@ Page({
     let tempLatitude = 0
     let templongitude = 0
 
-    const db = wx.cloud.database()
-    db.collection('catlist').doc(res.markerId).get({
-      success(res) {
-        tempLatitude = res.data.latitude
-        templongitude = res.data.longitude
-        
-        qqmapsdk.reverseGeocoder({
-          location: {
-            latitude: tempLatitude,
-            longitude: templongitude,
-          },
-          success: (res) => {//成功后的回调
-            console.log(res)
-            var res = res.result;
-            that.setData({
-              detail: {
-                address: res.address,
-                createTime: res.createTime
-              }
-            })
-          },
-          fail: (res) => {
-            console.log(res)
-          }
-        })
-
-      }
+    this.setData({
+      detail: this.data.flagCatList[res.markerId]
     })
-
   },
 
   hideDetailWrap(){
@@ -84,6 +57,7 @@ Page({
       success => {
         console.log("获取数据成功")
         var markers = []
+        
         for (var i = 0; i < success.data.length; i++) {
           // let temImg
           // wx.cloud.getTempFileURL({
@@ -93,6 +67,7 @@ Page({
           //     console.log("getTempFileURL:",res.fileList[0].tempFileURL)
           //   }
           // })
+          this.data.flagCatList[success.data[i]._id] = success.data[i];
           markers[i] = {
             id: success.data[i]._id,
             latitude: success.data[i].latitude,
