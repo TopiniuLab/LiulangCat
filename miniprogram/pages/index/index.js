@@ -23,7 +23,6 @@ Page({
   go() {
     console.log('kkk')
     this.mapCtx.moveToLocation()
-    console.log("latitude:" + this.data.latitude + " " + "longitude:" + this.data.longitude)
   },
 
   onMarkerClick(res){
@@ -36,10 +35,10 @@ Page({
 
     const db = wx.cloud.database()
     db.collection('catlist').doc(res.markerId).get({
-      success(res) {
-        tempLatitude = res.data.latitude
-        templongitude = res.data.longitude
-        
+      success(successRes) {
+        tempLatitude = successRes.data.latitude
+        templongitude = successRes.data.longitude
+
         qqmapsdk.reverseGeocoder({
           location: {
             latitude: tempLatitude,
@@ -51,12 +50,9 @@ Page({
             that.setData({
               detail: {
                 address: res.address,
-                createTime: res.createTime
+                createTime: successRes.data.createTime
               }
             })
-          },
-          fail: (res) => {
-            console.log(res)
           }
         })
 
