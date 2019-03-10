@@ -1,20 +1,14 @@
-var QQMapWX = require('../../lib/qqmap-wx-jssdk.min.js');
+var DB = require('../../utils/DB.js')
+var QQMapWX = require('../../public/js/qqmap-wx-jssdk.min.js');
 var qqmapsdk;
 
 Page({
   data: {
     containerHeight:0,
-    scale: 14,
+    scale: 16,
     latitude: 0,
     longitude: 0,
-    myMarkers: [{
-      id: 1,
-      latitude: 28.11266,
-      longitude: 112.9834,
-      iconPath: '../../images/icon_1.png',
-      width: 30,
-      height: 30
-    }],
+    myMarkers: [{}],
 
     detail:{
       address:"",
@@ -37,21 +31,38 @@ Page({
       isHideDetailWrap: false
     })
     var that = this;
-    qqmapsdk.reverseGeocoder({
-      location: {
-        latitude: that.data.latitude,
-        longitude: that.data.longitude,
-      },
-      success: (res) => {//成功后的回调
-        var res = res.result;
-        that.setData({
-          detail: {
-            address: res.address,
-            createTime:"2019/3/8"
+    let tempLatitude = 0
+    let templongitude = 0
+
+    const db = wx.cloud.database()
+    db.collection('catlist').doc(res.markerId).get({
+      success(res) {
+        tempLatitude = res.data.latitude
+        templongitude = res.data.longitude
+        
+        qqmapsdk.reverseGeocoder({
+          location: {
+            latitude: tempLatitude,
+            longitude: templongitude,
+          },
+          success: (res) => {//成功后的回调
+            console.log(res)
+            var res = res.result;
+            that.setData({
+              detail: {
+                address: res.address,
+                createTime: res.createTime
+              }
+            })
+          },
+          fail: (res) => {
+            console.log(res)
           }
         })
+
       }
     })
+
   },
 
   hideDetailWrap(){
@@ -69,38 +80,44 @@ Page({
       key: 'WZZBZ-2BZ3G-4CNQ5-IGDUI-SIKP3-UOFAR'
     })
 
-    wx.cloud.init({
-      env:"dev-c86710"
-    })
-
-    const db = wx.cloud.database()
-
-    db.collection('catlist').get({
-      success:(res)=>{
-        console.log("获取数据:")
-        console.log(res)
-      },
-      fail:(res)=>{
-        console.log("失败")
+    DB.getAllData().then(
+      success => {
+        console.log("获取数据成功")
+        var markers = []
+        for (var i = 0; i < success.data.length; i++) {
+          // let temImg
+          // wx.cloud.getTempFileURL({
+          //   fileList: ["cloud://dev-c86710.6465-dev-c86710/icon_1.png"],
+          //   success: res => {
+          //     temImg = res.fileList[0].tempFileURL
+          //     console.log("getTempFileURL:",res.fileList[0].tempFileURL)
+          //   }
+          // })
+          markers[i] = {
+            id: success.data[i]._id,
+            latitude: success.data[i].latitude,
+            longitude: success.data[i].longitude,
+            iconPath: '../../public/imgs/icon_cat.png',
+            width: 30,
+            height: 30
+          }
+        }
+        that.setData({
+          myMarkers: markers
+        })
       }
-    })
+    )
 
     this.mapCtx = wx.createMapContext('map', this);
 
     wx.getLocation({
+      type: 'gcj02',
+      altitude: true,//高精度定位
       success: function (res) {
         console.log("latitude:" + res.latitude + " " + "longitude:" + res.longitude)
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
-          myMarkers: [{
-            id: 1,
-            latitude: res.latitude,
-            longitude: res.longitude,
-            iconPath: '../../images/icon_1.png',
-            width: 50,
-            height: 50
-          }],
         })
       },
     })

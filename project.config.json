@@ -47,6 +47,10 @@
 					"name": "catDetail",
 					"pathName": "pages/catDetail/catDetail",
 					"query": "id=XIPkDHffS3SW-eTD",
+        },{
+					"id": -1,
+					"name": "mapDemo",
+					"pathName": "pages/mapDemo/mapDemo",
 					"scene": null
 				}
 			]

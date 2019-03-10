@@ -13,7 +13,7 @@
       <cover-image 
         class='location-btn' 
         bindtap='go'
-        src='../../images/icon_location.png'
+        src='../../public/imgs/icon_location.png'
         />
 
       <cover-view hidden='{{isHideDetailWrap}}' class='detail-wrap'>
