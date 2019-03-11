@@ -1,10 +1,10 @@
 <view class='root' style='height: {{windowHeight}}px'>
 
-  <map animation='{{ani}}' id="map" latitude='{{latitude}}' longitude='{{longitude}}' scale='{{scale}}' show-location style="width: 100%; height: {{containerHeight}}px; transition: all .3s" markers="{{myMarkers}}" bindmarkertap='onMarkerClick'>
+  <map animation='{{ani}}' id="map" latitude='{{latitude}}' longitude='{{longitude}}' scale='{{scale}}' show-location style="width: 100%; height: {{containerHeight}}px; transition: all .3s; position: relative" markers="{{myMarkers}}" bindmarkertap='onMarkerClick'>
   <cover-view hover-class='locate-btn-hover' class='locate-btn'>
     <cover-image class='location-btn' bindtap='go' src='../../public/imgs/icon_location.png' />
   </cover-view>
-  <cover-view class='func-box'>
+  <cover-view bindtap='goAdd' hover-class='func-box-hover' class='func-box'>
     <button class='add-btn'>添加猫咪信息</button>
   </cover-view>
   </map>

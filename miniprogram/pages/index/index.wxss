@@ -1,8 +1,8 @@
 /* pages/index/index.wxss */
 
 .location-btn{
-  width: 46rpx;
-  height: 46rpx;
+  width: 40rpx;
+  height: 40rpx;
   /* border-radius:70rpx; */
 }
 
@@ -68,22 +68,26 @@
 }
 .locate-btn{
   background-color: #0082FF;
-  display: inline;
-  position:fixed;
+  position:absolute;
   right: 30rpx;
-  bottom: 30rpx;
+  bottom: 40rpx;
   border-radius: 10rpx;
-  padding: 10rpx 10rpx;
   transition: all .3s;
+  height: 64rpx;
+  width: 64rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .locate-btn-hover{
   transform: scale(0.9)
 }
 .func-box{
-  position: fixed;
-  bottom: 32rpx;
+  position: absolute;
+  bottom: 42rpx;
   left: 50%;
-  transform: translate(-50%,0)
+  transform: translate(-50%,0);
+  transition: all .3s;
 }
 .add-btn{
   width: 300rpx;
@@ -94,8 +98,8 @@
   line-height: 64rpx;
   transition: all .3s;
 }
-.add-btn-hover{
-  transform: scale(0.9)
+.func-box-hover{
+  transform: translate(-50%,0) scale(0.9);
 }
 @keyframes back{
   0% {
