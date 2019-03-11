@@ -33,7 +33,7 @@
   bottom: 10rpx;
   left: 10rpx;
   color: white;
-  text-shadow:  0 2rpx 16rpx rgba(0,0,0,0.2);
+  text-shadow:  0 2rpx 16rpx rgba(0,0,0,0.6);
 }
 .locate-box{
   position: absolute;

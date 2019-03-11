@@ -15,17 +15,29 @@
 }
 
 .detail-wrap{
-  width: 90%;
-  min-height: 475rpx;
+  width: 700rpx;
+  height: 475rpx;
   background-color: white;
   position:absolute; 
   top: 80rpx;
   left: 50%;
   transform: translate(-50%,0);
   border-radius: 6px;
+  z-index: 9999;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
 }
-.card-swiper{
+.wrap-text{
+  white-space:pre-wrap;
+  text-align:left;
+  font-size:16px;
+  text-shadow:  0 2rpx 16rpx rgba(0,0,0,0.6);
+  color: white;
+}
+.text-container{
+  display: flex;
+  flex-direction: column;
   position: absolute;
-  
+  bottom:10px;
+  left:10px;
+  width:95%;
 }

@@ -31,24 +31,24 @@
 			"current": 2,
 			"list": [
 				{
-					"id": -1,
+					"id": 1,
 					"name": "db guide",
 					"pathName": "pages/databaseGuide/databaseGuide",
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 2,
 					"name": "addCat",
 					"pathName": "pages/addCat/addCat",
 					"query": ""
 				},
 				{
-					"id": 2,
+					"id": 3,
 					"name": "catDetail",
 					"pathName": "pages/catDetail/catDetail",
-					"query": "id=XIPkDHffS3SW-eTD",
+					"query": "id=XIPkDHffS3SW-eTD"
         },{
-					"id": -1,
+					"id": 4,
 					"name": "mapDemo",
 					"pathName": "pages/mapDemo/mapDemo",
 					"scene": null
