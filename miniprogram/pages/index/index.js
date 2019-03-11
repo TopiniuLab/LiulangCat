@@ -4,6 +4,7 @@ var qqmapsdk;
 
 Page({
   data: {
+    windowHeight: 0,
     containerHeight:0,
     scale: 16,
     latitude: 0,
@@ -14,6 +15,9 @@ Page({
     isHideDetailWrap:true,
 
     flagCatList: [],
+    animation: null,
+    ani: null,
+    currentId: ''
   },
 
   /**
@@ -27,20 +31,37 @@ Page({
 
   onMarkerClick(res){
     this.setData({
-      isHideDetailWrap: false
+      currentId: res.markerId
     })
     var that = this;
     let tempLatitude = 0
     let templongitude = 0
+    console.log(this.animation)
+    // this.animation.translate(0,150).step();
+    this.animation.translate(0, -150).step()
+    this.ani.height(this.data.windowHeight - 150).step()
 
     this.setData({
-      detail: this.data.flagCatList[res.markerId]
+      detail: this.data.flagCatList[res.markerId],
+      isHideDetailWrap: false,
+      animation: this.animation.export(),
+      ani: this.ani.export()
     })
   },
 
   hideDetailWrap(){
     this.setData({
       isHidden: true
+    })
+  },
+  goDetail(){
+    wx.navigateTo({
+      url: '../catDetail/catDetail?id=' + this.data.currentId,
+    })
+  },
+  goAdd(){
+    wx.navigateTo({
+      url: '../addCat/addCat',
     })
   },
 
@@ -101,7 +122,8 @@ Page({
     wx.getSystemInfo({
       success: (res)=> {
         this.setData({
-          containerHeight:res.windowHeight
+          windowHeight:res.windowHeight,
+          containerHeight: res.windowHeight
         })
       },
     })
@@ -112,7 +134,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    this.animation = wx.createAnimation({
+      duration: 300,
+      timingFunction: 'ease',
+      delay: 100
+    })
+    this.ani = wx.createAnimation({
+      duration: 300,
+      timingFunction: 'ease',
+      delay: 0
+    })
   },
 
   /**

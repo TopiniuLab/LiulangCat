@@ -1,32 +1,28 @@
-<view>
+<view class='root' style='height: {{windowHeight}}px'>
 
-  <map
-    id="map"
-    latitude='{{latitude}}'
-    longitude='{{longitude}}' 
-    scale='{{scale}}'
-    show-location
-    style="width: 100%; height: {{containerHeight}}px"
-    markers="{{myMarkers}}"
-    bindmarkertap='onMarkerClick'>
-
-      <cover-image 
-        class='location-btn' 
-        bindtap='go'
-        src='../../public/imgs/icon_location.png'
-        />
-      <cover-view wx:if='{{!isHideDetailWrap}}' class='detail-wrap'>
-        <cover-image src='{{detail.photos[0]}}' style='width: 744rpx; height: 475rpx'></cover-image>
-
-      <cover-view class='text-container'>
-        <cover-view class='wrap-text'>
-          {{detail.createTime}}
-        </cover-view>
-        <cover-view class='wrap-text'>
-          @{{detail.address}}
-        </cover-view>
-      </cover-view>
-      </cover-view>
+  <map animation='{{ani}}' id="map" latitude='{{latitude}}' longitude='{{longitude}}' scale='{{scale}}' show-location style="width: 100%; height: {{containerHeight}}px; transition: all .3s" markers="{{myMarkers}}" bindmarkertap='onMarkerClick'>
+  <cover-view hover-class='locate-btn-hover' class='locate-btn'>
+    <cover-image class='location-btn' bindtap='go' src='../../public/imgs/icon_location.png' />
+  </cover-view>
+  <cover-view class='func-box'>
+    <button class='add-btn'>添加猫咪信息</button>
+  </cover-view>
   </map>
+  <view hover-class='detail-card-hover' bindtap='goDetail' animation="{{animation}}" class='detail-card' style='top: {{windowHeight}}px'>
+    <view class='card-box'>
+      <view style='width: 300rpx'>
+        <swiper indicator-dots autoplay interval="{{5000}}" class='card-swiper'>
+          <block wx:for='{{detail.photos}}' wx:key='id'>
+            <swiper-item>
+              <image mode='aspectFill' style='width: 100%;' src='{{item}}'></image>
+            </swiper-item>
+          </block>
+        </swiper>
+      </view>
+      <view class='info-box'>
+        {{detail.description}}
+      </view>
+    </view>
+  </view>
 
 </view>

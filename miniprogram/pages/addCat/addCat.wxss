@@ -29,7 +29,7 @@ padding-top: 20px;
   background: linear-gradient(-135deg,#17EAD9 0%, #6078EA 100%);
   animation: back 10s ease-in-out 1s infinite alternate; 
   background-size: 200% 200%;
-  background-position: 0 50%;
+  background-position: 0 100%;
   margin-bottom: 20px;
 }
 .desc-text{

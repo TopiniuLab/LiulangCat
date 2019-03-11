@@ -1,17 +1,9 @@
 /* pages/index/index.wxss */
 
 .location-btn{
-  width: 35px;
-  height: 35px;
-  margin-right: 15px;
-  margin-top: 20px;
-  /* margin-bottom: 55px; */
-  position:fixed; 
-  /* bottom:0;  */
-  right: 0;
-  background-color: #ffffff;
-  border-radius:25px;
-  box-shadow: 5rpx 8rpx 8rpx gray;
+  width: 46rpx;
+  height: 46rpx;
+  /* border-radius:70rpx; */
 }
 
 .detail-wrap{
@@ -22,14 +14,14 @@
   top: 80rpx;
   left: 50%;
   transform: translate(-50%,0);
-  border-radius: 6px;
+  border-radius: 12rpx;
   z-index: 9999;
   box-shadow: 0 1px 8px rgba(0,0,0,0.2);
 }
 .wrap-text{
   white-space:pre-wrap;
   text-align:left;
-  font-size:16px;
+  font-size:32rpx;
   text-shadow:  0 2rpx 16rpx rgba(0,0,0,0.6);
   color: white;
 }
@@ -37,7 +29,82 @@
   display: flex;
   flex-direction: column;
   position: absolute;
-  bottom:10px;
-  left:10px;
+  bottom:20rpx;
+  left:20rpx;
   width:95%;
+}
+.detail-card{
+  position: fixed;
+  background-color: white;
+  width: 100%;
+  border-radius: 12rpx 12rpx;
+  overflow: hidden;
+  background-position: 0 10%;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  transition: opacity .3s;
+}
+.card-box{
+  display: flex;
+}
+.card-swiper{
+  width: 300rpx;
+}
+.info-box{
+  border-left: 1px solid rgba(0,0,0,0.2);
+  color: #333;
+  font-size: 32rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 40rpx;
+}
+.root{
+  background: linear-gradient(-135deg, #FFA7E7 0%, #EA6362 100%);
+  animation: back 5s ease-in-out 1s infinite alternate; 
+  background-size: 200% 200%;
+}
+.detail-card-hover{
+  transform: translate(0px, -150px) scale(0.9) !important
+}
+.locate-btn{
+  background-color: #0082FF;
+  display: inline;
+  position:fixed;
+  right: 30rpx;
+  bottom: 30rpx;
+  border-radius: 10rpx;
+  padding: 10rpx 10rpx;
+  transition: all .3s;
+}
+.locate-btn-hover{
+  transform: scale(0.9)
+}
+.func-box{
+  position: fixed;
+  bottom: 32rpx;
+  left: 50%;
+  transform: translate(-50%,0)
+}
+.add-btn{
+  width: 300rpx;
+  height: 64rpx;
+  background-color: #0082FF;
+  color: white;
+  font-size: 32rpx;
+  line-height: 64rpx;
+  transition: all .3s;
+}
+.add-btn-hover{
+  transform: scale(0.9)
+}
+@keyframes back{
+  0% {
+		background-position: 0% 100%
+	}
+	50% {
+		background-position: 100% 0%
+	}
+	100% {
+		background-position: 0% 100%
+	}
 }
