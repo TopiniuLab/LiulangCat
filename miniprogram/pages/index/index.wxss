@@ -4,6 +4,7 @@
   width: 40rpx;
   height: 40rpx;
   /* border-radius:70rpx; */
+  animation-timing-function: linear
 }
 
 .detail-wrap{

@@ -147,13 +147,13 @@ Page({
    */
   onReady: function () {
     this.animation = wx.createAnimation({
-      duration: 500,
+      duration: 600,
       timingFunction: 'ease',
-      delay: 100
+      delay: 500
     })
     this.ani = wx.createAnimation({
-      duration: 500,
-      timingFunction: 'ease',
+      duration: 600,
+      timingFunction: 'linear',
       delay: 0
     })
   },
