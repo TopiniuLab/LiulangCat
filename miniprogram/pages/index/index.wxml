@@ -1,6 +1,6 @@
 <view class='root' style='height: {{windowHeight}}px'>
 
-  <map animation='{{ani}}' id="map" latitude='{{latitude}}' longitude='{{longitude}}' scale='{{scale}}' show-location style="width: 100%; height: {{containerHeight}}px; transition: all .3s; position: relative" markers="{{myMarkers}}" bindmarkertap='onMarkerClick'>
+  <map bindtap='{{hideDetail}}' animation='{{ani}}' id="map" latitude='{{latitude}}' longitude='{{longitude}}' scale='{{scale}}' show-location style="width: 100%; height: {{containerHeight}}px; transition: all .3s; position: relative" markers="{{myMarkers}}" bindmarkertap='onMarkerClick'>
   <cover-view hover-class='locate-btn-hover' class='locate-btn'>
     <cover-image class='location-btn' bindtap='go' src='../../public/imgs/icon_location.png' />
   </cover-view>
@@ -8,7 +8,7 @@
     <button class='add-btn'>添加猫咪信息</button>
   </cover-view>
   </map>
-  <view hover-class='detail-card-hover' bindtap='goDetail' animation="{{animation}}" class='detail-card' style='top: {{windowHeight}}px'>
+  <view  animation="{{animation}}" class='detail-card' style='bottom: {{windowHeight}}px'>
     <view class='card-box'>
       <view style='width: 300rpx'>
         <swiper indicator-dots autoplay interval="{{5000}}" class='card-swiper'>
@@ -19,8 +19,20 @@
           </block>
         </swiper>
       </view>
-      <view class='info-box'>
-        {{detail.description}}
+      <view class='info-box-right'>
+        <view class='info-box'>
+          {{detail.description}}
+        </view>
+        <view class='btn-box'>
+          <view hover-class='detail-card-hover' bindtap='goDetail' class='btn-detail'>
+            查看详情
+          </view>
+          <view style='width: 12rpx;background-color:white'>
+          </view>
+          <view style='flex:1;height: 60rpx;background: transparent;display:flex;justify-content: center;align-items:center;border-radius: 6px'>
+            <image src='../../public/imgs/delete.png' style='width: 30rpx;height: 30rpx;'></image>
+          </view>
+        </view>
       </view>
     </view>
   </view>

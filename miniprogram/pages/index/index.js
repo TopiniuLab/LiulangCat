@@ -28,7 +28,17 @@ Page({
     this.mapCtx.moveToLocation()
     console.log("latitude:" + this.data.latitude + " " + "longitude:" + this.data.longitude)
   },
+  hideDetail(){
+    console.log('...')
+    this.animation.translate(0, 150).step()
+    this.ani.height(this.data.windowHeight + 150).step()
 
+    this.setData({
+      animation: this.animation.export(),
+      ani: this.ani.export()
+    })
+
+  },
   onMarkerClick(res){
     this.setData({
       currentId: res.markerId
@@ -38,8 +48,8 @@ Page({
     let templongitude = 0
     console.log(this.animation)
     // this.animation.translate(0,150).step();
-    this.animation.translate(0, -150).step()
-    this.ani.height(this.data.windowHeight - 150).step()
+    this.animation.translate(0, 150).step()
+    this.ani.height(this.data.windowHeight + 150).step()
 
     this.setData({
       detail: this.data.flagCatList[res.markerId],
