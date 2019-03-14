@@ -28,10 +28,11 @@ Page({
     this.mapCtx.moveToLocation()
     console.log("latitude:" + this.data.latitude + " " + "longitude:" + this.data.longitude)
   },
-  hideDetail(){
+  hideCard(){
     console.log('...')
-    this.animation.translate(0, 150).step()
-    this.ani.height(this.data.windowHeight + 150).step()
+    this.animation.translate(0, -150).step()
+    console.log(this.data.windowHeight)
+    this.ani.height(this.data.windowHeight).translate(0,0).step()
 
     this.setData({
       animation: this.animation.export(),
@@ -49,7 +50,8 @@ Page({
     console.log(this.animation)
     // this.animation.translate(0,150).step();
     this.animation.translate(0, 150).step()
-    this.ani.height(this.data.windowHeight + 150).step()
+    this.ani.height(this.data.windowHeight - 150).translate(0,150).step()
+
 
     this.setData({
       detail: this.data.flagCatList[res.markerId],
@@ -145,12 +147,12 @@ Page({
    */
   onReady: function () {
     this.animation = wx.createAnimation({
-      duration: 300,
+      duration: 500,
       timingFunction: 'ease',
       delay: 100
     })
     this.ani = wx.createAnimation({
-      duration: 300,
+      duration: 500,
       timingFunction: 'ease',
       delay: 0
     })

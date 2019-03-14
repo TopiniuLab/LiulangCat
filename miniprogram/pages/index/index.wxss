@@ -54,7 +54,7 @@
   font-size: 32rpx;
 }
 .detail-card-hover{
-  transform: translate(0px, -150px) scale(0.9) !important
+  transform: scale(0.9) !important
 }
 .locate-btn{
   background-color: #0082FF;
@@ -102,6 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: all .3s;
 }
 .info-box-right{
   display: flex;

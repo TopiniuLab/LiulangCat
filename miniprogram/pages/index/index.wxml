@@ -29,7 +29,7 @@
           </view>
           <view style='width: 12rpx;background-color:white'>
           </view>
-          <view style='flex:1;height: 60rpx;background: transparent;display:flex;justify-content: center;align-items:center;border-radius: 6px'>
+          <view bindtap='hideCard' hover-class='detail-card-hover' style='flex:1;height: 60rpx;background: transparent;display:flex;justify-content: center;align-items:center;border-radius: 6px; transition: all .3s'>
             <image src='../../public/imgs/delete.png' style='width: 30rpx;height: 30rpx;'></image>
           </view>
         </view>
