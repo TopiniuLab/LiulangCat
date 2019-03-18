@@ -127,8 +127,13 @@ Page({
     this.data.contactValue = e.detail.value;
   },
   submit() {
-    console.log(this.data)
-    console.log(this.compuData())
+    if (this.data.description === ''){
+      wx.showToast({
+        title: '详细描述不能为空',
+        icon: 'none'
+      })
+      return;
+    }
     getApp().globalData.TB.add({
       data: this.compuData(),
       success: (res) => {
