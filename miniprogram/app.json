@@ -13,9 +13,10 @@
     "navigationBarTextStyle": "black"
   },
   "cloud": true,
-  "permission":{
-    "scope.userLocation":{
-      "desc":"需要你的位置信息"
+  "permission": {
+    "scope.userLocation": {
+      "desc": "需要你的位置信息"
     }
-  }
+  },
+  "sitemapLocation": "sitemap.json"
 }
